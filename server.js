@@ -205,6 +205,7 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+let visitCount = 0;
 
 app.use(cors());
 app.use(express.json());
@@ -251,6 +252,10 @@ app.post("/contact", (req, res) => {
       res.status(200).json({ code: 200, status: "Message sent successfully" });
     }
   });
+});
+app.get("/visit", (req, res) => {
+  visitCount++;
+  res.json({ count: visitCount });
 });
 
 app.get("/", (req, res) => {
